@@ -32,3 +32,10 @@ For example, u created 5 files, but only 2 files u wanna add can specific the fi
 ```
 git add /paath/to/file1 /path/to/file2
 ```
+
+## Code Standard
+`lib`: The external library that used in this project
+`src/main/java/com/`: contain all the classes
+`src/main/resources/com/css`: contain all the css file for decorating the GUI
+`src/main/resources/com/example`: contain all the fxml files which represent the scene
+`src/main/resources/com/textFiles`: contain all the text files that used in this project
