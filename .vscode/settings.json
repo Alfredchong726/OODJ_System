@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "oodj_system/lib/fontawesomefx-8.2.jar",
+        "oodj_system/lib/fontawesomefx-8.9.jar",
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
