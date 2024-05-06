@@ -9,12 +9,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-import com.shared.SharedFunctions;
-
 public class App extends Application {
     private static Scene scene;
-    private double x = 0;
-    private double y = 0;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -35,8 +31,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        SharedFunctions function = new SharedFunctions();
-        
         launch();
     }
 

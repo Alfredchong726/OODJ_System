@@ -9,7 +9,7 @@ import com.shared.SharedFunctions;
 public class Lecturer {
     public String lecturerId;
     public String name;
-    private String password;
+    public String password;
     public String birth;
     public String gender;
     public String phoneNumber;
@@ -21,6 +21,7 @@ public class Lecturer {
 
     public SharedFunctions function = new SharedFunctions();
 
+    // Setter
     public Lecturer(String id, String name, String password, String birth, 
         String gender, String phoneNumber, String email, String role, 
         List<String> assignedSupervisee, Map<String, List<String>> availableSlot) {
@@ -37,12 +38,50 @@ public class Lecturer {
         this.availableSlot = availableSlot;
     }
 
+    // Getter
+    public String getLecturerId() {
+        return this.lecturerId;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getBirth() {
+        return this.birth;
+    }
+
+    public String getGender() {
+        return this.gender;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public List<String> getAssignedSupervisee() {
+        return this.assignedSupervisee;
+    }
+
+    public Map<String, List<String>> getAvailableSlot() {
+        return this.availableSlot;
+    }
+
+    // Functions
     public List<String> viewAssignedSupervisees() {
         return this.assignedSupervisee;
     }
 
     public List<Presentation> viewPresentationRequests() {
-        List<Presentation> info = function.getPresentationById("L01", "");
+        List<Presentation> info = function.getPresentationById("L01", "", "");
         return info;
     }
 
@@ -63,19 +102,19 @@ public class Lecturer {
     }
 
     public void confirmDatePresentationOrSlot(String presentationId) {
-        function.updatePresentationStatus(presentationId, "apprived");
+        function.updatePresentationStatus(presentationId, "apprived", false);
     }
     @Override
-        public String toString() {
-            return lecturerId + ";" +
-            name + ";" +
-            password + ";" +
-            birth + ";" +
-            gender + ";" +
-            phoneNumber + ";" +
-            email + ";" +
-            role + ";" +
-            assignedSupervisee + ";" +
-            availableSlot;
-        }
+    public String toString() {
+        return lecturerId + ";" +
+        name + ";" +
+        password + ";" +
+        birth + ";" +
+        gender + ";" +
+        phoneNumber + ";" +
+        email + ";" +
+        role + ";" +
+        assignedSupervisee + ";" +
+        availableSlot;
+    }
 }

@@ -48,3 +48,7 @@
     -fx-background-color: linear-gradient(to bottom, #277bd0, #1b6fa4);
 }
 
+.showpasswordBtn {
+    -fx-background-color: transparent;
+    -fx-border: none;
+}

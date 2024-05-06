@@ -19,6 +19,24 @@ public class SharedFunctions {
     public File lecturerFile = new File("src/main/resources/com/textFiles/Lecturer.txt");
     public File presentationFile = new File("src/main/resources/com/textFiles/Presentation.txt");
 
+    public String validatePassword(String role, String username, String password) {
+        if (role == "") {
+            return null;
+        } else if (role == "Lecturer") {
+            return validateLecturer(username, password);
+        }
+        return null;
+    }
+
+    private String validateLecturer(String username, String password) {
+        List<Lecturer> lecturerData = getLecturerData();
+        for (Lecturer lecturer : lecturerData) {
+            if (lecturer.name.equals(username) && lecturer.password.equals(password)) {
+                return lecturer.lecturerId;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<Lecturer> getLecturerData() {
         ArrayList<Lecturer> LecturerData = new ArrayList<Lecturer>();
@@ -34,12 +52,12 @@ public class SharedFunctions {
         return LecturerData;
     }
 
-    public ArrayList<Presentation> getPresentationById(String lecturerId, String studentId) {
+    public ArrayList<Presentation> getPresentationById(String lecturerId, String secondMarkerId, String studentId) {
         ArrayList<Presentation> PresentationData = new ArrayList<Presentation>();
         try (BufferedReader reader = new BufferedReader(new FileReader(presentationFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Presentation presentation = parsePresentation(line, lecturerId, studentId);
+                Presentation presentation = parsePresentation(line, lecturerId, secondMarkerId, studentId);
                 if (presentation != null) {
                     PresentationData.add(presentation);
                 }
@@ -64,14 +82,16 @@ public class SharedFunctions {
         }
     }
 
-    public void updatePresentationStatus(String presentationId, String status) {
+    public void updatePresentationStatus(String presentationId, String status, boolean isSecondMarker) {
         ArrayList<Presentation> PresentationData = new ArrayList<Presentation>();
         try (BufferedReader reader = new BufferedReader(new FileReader(presentationFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Presentation presentation = parsePresentation(line, "all", "all");
-                if (presentation.presentationId.equals(presentationId)) {
+                Presentation presentation = parsePresentation(line, "all", "all", "all");
+                if (presentation.presentationId.equals(presentationId) && isSecondMarker) {
                     presentation.status = status;
+                } else if (!isSecondMarker) {
+                    presentation.secondMarkerAceeptance = status;
                 }
                 PresentationData.add(presentation);
             }
@@ -109,13 +129,18 @@ public class SharedFunctions {
         return availableSlots;
     }
 
-    private static Presentation parsePresentation(String line, String LecturerId, String StudentId) {
+    private static Presentation parsePresentation(String line, String LecturerId, String SecondMarkerId, String StudentId) {
         String[] fields = line.split(";");
         String presentationId = "";
         String reportId = "";
         String date = "";
-        String lecturerId = "";
+        String supervisorId = "";
+        String secondMarkerId ="";
+        String secondMarkerAcceptance = "";
         String studentId = "";
+        String studentName = "";
+        String assesmentType = "";
+        String gender = "";
         String slot = "";
         String status = "";
 
@@ -123,29 +148,57 @@ public class SharedFunctions {
             presentationId = fields[0];
             reportId = fields[1];
             date = fields[2];
-            lecturerId = fields[3];
-            studentId = fields[4];
-            slot = fields[5];
-            status = fields[6];
-        } else if (StudentId != "" & StudentId == fields[4]) {
+            supervisorId = fields[3];
+            secondMarkerId = fields[4];
+            secondMarkerAcceptance = fields[5];
+            studentId = fields[6];
+            studentName = fields[7];
+            gender = fields[8];
+            assesmentType = fields[9];
+            slot = fields[10];
+            status = fields[11];
+        } else if (SecondMarkerId != "" && SecondMarkerId.equals(fields[4])) {
             presentationId = fields[0];
             reportId = fields[1];
             date = fields[2];
-            lecturerId = fields[3];
-            studentId = fields[4];
-            slot = fields[5];
-            status = fields[6];
-        } else if (LecturerId.equals("all") && StudentId.equals("all")) {
+            supervisorId = fields[3];
+            secondMarkerId = fields[4];
+            secondMarkerAcceptance = fields[5];
+            studentId = fields[6];
+            studentName = fields[7];
+            gender = fields[8];
+            assesmentType = fields[9];
+            slot = fields[10];
+            status = fields[11];
+        } else if (StudentId != "" & StudentId == fields[5]) {
             presentationId = fields[0];
             reportId = fields[1];
             date = fields[2];
-            lecturerId = fields[3];
-            studentId = fields[4];
-            slot = fields[5];
-            status = fields[6];
+            supervisorId = fields[3];
+            secondMarkerId = fields[4];
+            secondMarkerAcceptance = fields[5];
+            studentId = fields[6];
+            studentName = fields[7];
+            gender = fields[8];
+            assesmentType = fields[9];
+            slot = fields[10];
+            status = fields[11];
+        } else if (LecturerId.equals("all") || SecondMarkerId.equals("all") || StudentId.equals("all")) {
+            presentationId = fields[0];
+            reportId = fields[1];
+            date = fields[2];
+            supervisorId = fields[3];
+            secondMarkerId = fields[4];
+            secondMarkerAcceptance = fields[5];
+            studentId = fields[6];
+            studentName = fields[7];
+            gender = fields[8];
+            assesmentType = fields[9];
+            slot = fields[10];
+            status = fields[11];
         }else {
             return null;
         }
-        return new Presentation(presentationId, reportId, date, lecturerId, studentId, slot, status);
+        return new Presentation(presentationId, reportId, date, supervisorId, secondMarkerId, secondMarkerAcceptance, studentId, studentName, assesmentType, gender, slot, status);
     }
 }
