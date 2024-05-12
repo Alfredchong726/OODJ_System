@@ -2,7 +2,6 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -32,19 +31,15 @@
                         <Font name="Noto Sans Black" size="26.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="username" layoutX="107.0" layoutY="305.0" prefHeight="40.0" prefWidth="250.0" promptText="Username" styleClass="textfield" stylesheets="@../css/login.css" />
-                  <PasswordField fx:id="password" layoutX="109.0" layoutY="365.0" prefHeight="40.0" prefWidth="250.0" promptText="Password" styleClass="textfield" stylesheets="@../css/login.css" />
-                  <Button fx:id="loginBtn" layoutX="108.0" layoutY="436.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="250.0" styleClass="login-btn" stylesheets="@../css/login.css" text="Login" />
+                  <TextField fx:id="username" layoutX="107.0" layoutY="273.0" prefHeight="40.0" prefWidth="250.0" promptText="Username" styleClass="textfield" stylesheets="@../css/login.css" />
+                  <PasswordField fx:id="password" layoutX="109.0" layoutY="333.0" prefHeight="40.0" prefWidth="250.0" promptText="Password" styleClass="textfield" stylesheets="@../css/login.css" />
+                  <Button fx:id="loginBtn" layoutX="108.0" layoutY="404.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="250.0" styleClass="login-btn" stylesheets="@../css/login.css" text="Login" />
                   <Button fx:id="close" layoutX="392.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" prefHeight="34.0" prefWidth="58.0" styleClass="close" stylesheets="@../css/login.css">
                      <graphic>
                         <FontAwesomeIcon glyphName="CLOSE" size="1.5em" />
                      </graphic>
                   </Button>
-                  <CheckBox fx:id="ProjectManager" layoutX="24.0" layoutY="254.0" mnemonicParsing="false" text="Project Manager" />
-                  <CheckBox fx:id="Admin" layoutX="259.0" layoutY="256.0" mnemonicParsing="false" text="Admin" />
-                  <CheckBox fx:id="Lecturer" layoutX="164.0" layoutY="254.0" mnemonicParsing="false" text="Lecturer" />
-                  <CheckBox fx:id="Student" layoutX="343.0" layoutY="255.0" mnemonicParsing="false" text="Student" />
-                  <ToggleButton fx:id="toogleBtn" layoutX="318.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#toggleShowPassword" styleClass="showpasswordBtn" stylesheets="@../css/login.css">
+                  <ToggleButton fx:id="toogleBtn" layoutX="318.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#toggleShowPassword" styleClass="showpasswordBtn" stylesheets="@../css/login.css">
                      <graphic>
                         <FontAwesomeIcon fx:id="toggleBtn" glyphName="EYE" />
                      </graphic>

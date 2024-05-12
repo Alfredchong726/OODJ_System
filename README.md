@@ -45,3 +45,9 @@ git add /paath/to/file1 /path/to/file2
 `src/main/resources/com/textFiles`: contain all the text files that used in this project
 
 `src/main/java/com/shared/SharedFunctions.java`: All the read file and write file functions should be in here
+
+
+## Test Case
+### Admin
+### Lecturer/Project Manager
+### Strudent

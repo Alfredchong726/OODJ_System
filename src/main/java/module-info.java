@@ -12,4 +12,7 @@ module com.example {
     exports com.Controller;
 
     opens com.Presentation to javafx.base;
+
+    opens com.Report to javafx.base;
+    opens com.Student to javafx.base;
 }

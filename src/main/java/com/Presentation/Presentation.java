@@ -2,10 +2,11 @@ package com.Presentation;
 
 public class Presentation {
     public String presentationId;
-    public String reportId;
     public String dateOfPresentation;
     public String supervisorId;
+    public String supervisorName;
     public String secondMarkerId;
+    public String secondMarkerName;
     public String secondMarkerAceeptance;
     public String studentId;
     public String studentName;
@@ -14,12 +15,15 @@ public class Presentation {
     public String slot;
     public String status;
 
-    public Presentation(String presentationId, String reportId, String dateOfPresentation, String supervisorId, String secondMarkerId, String secondMarkerAccpetance, String studentId, String studentName, String assesmentType, String gender, String slot, String status) {
+    public Presentation(String presentationId, String dateOfPresentation, String supervisorId, String supervisorName, 
+        String secondMarkerId, String secondMarkerName, String secondMarkerAccpetance, String studentId, String studentName,
+            String assesmentType, String gender, String slot, String status) {
         this.presentationId = presentationId;
-        this.reportId = reportId;
         this.dateOfPresentation = dateOfPresentation;
         this.supervisorId = supervisorId;
+        this.supervisorName = supervisorName;
         this.secondMarkerId = secondMarkerId;
+        this.secondMarkerName = secondMarkerName;
         this.secondMarkerAceeptance = secondMarkerAccpetance;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -32,25 +36,22 @@ public class Presentation {
     @Override
     public String toString() {
         return presentationId + ';' +
-            reportId + ';' +
             dateOfPresentation + ';' +
             supervisorId + ';' +
+            supervisorName + ';' +
             secondMarkerId + ';' +
+            secondMarkerName + ';' +
             secondMarkerAceeptance + ';' +
             studentId + ';' +
             studentName + ';' +
             assesmentType + ';' +
             gender + ';' +
             slot + ';' +
-            status;
+            status + "\n";
     }
 
     public String getPresentationId() {
         return this.presentationId;
-    }
-
-    public String getReportId() {
-        return this.reportId;
     }
 
     public String getDateOfPresentation() {
@@ -60,9 +61,17 @@ public class Presentation {
     public String getSupervisorId() {
         return this.supervisorId;
     }
+
+    public String getSupervisorName() {
+        return this.supervisorName;
+    }
     
     public String getSecondMarkerId() {
         return this.secondMarkerId;
+    }
+
+    public String getSecondMarkerName() {
+        return this.secondMarkerName;
     }
 
     public String getSecondMarkerAcceptance() {

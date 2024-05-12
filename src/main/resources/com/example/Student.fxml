@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.StudentController">
+   <children>
+      <AnchorPane fx:id="lecturerForm" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="178.0" layoutY="67.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="120.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="-13.0" layoutY="-77.0" prefHeight="35.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutY="40.0" prefHeight="80.0" prefWidth="1100.0" styleClass="semi-top-form" stylesheets="@../css/Lecturer.css">
+                                 <children>
+                                    <Label layoutX="858.0" layoutY="9.0" text="Welcome" textFill="WHITE">
+                                       <font>
+                                          <Font name="Noto Sans Regular" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="username" layoutX="864.0" layoutY="36.0" text="Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Noto Sans Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="logout" layoutX="995.0" layoutY="19.0" mnemonicParsing="false" onAction="#logout" stylesheets="@../css/Lecturer.css" text="Logout" textFill="WHITE" AnchorPane.rightAnchor="5.0">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
+                                       </graphic>
+                                       <styleClass>
+                                          <String fx:value="logout" />
+                                          <String fx:value="shadow" />
+                                       </styleClass></Button>
+                                    <Button fx:id="viewPresentationBtn" layoutX="7.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="View Presentation Requests" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="20.0">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="BOOK" />
+                                       </graphic>
+                                    </Button>
+                                    <Circle fx:id="imageCircle" fill="DODGERBLUE" layoutX="721.0" layoutY="36.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="5.0" />
+                                    <Button fx:id="viewSubmissionBtn" layoutX="238.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="View Submission Status">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="CHECK" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="35.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@../css/Lecturer.css">
+                                 <children>
+                                    <Label layoutX="41.0" layoutY="11.0" text="Academic Guidance Hub" AnchorPane.topAnchor="11.0">
+                                       <font>
+                                          <Font name="Noto Sans Regular" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <FontAwesomeIcon glyphName="GRADUATION_CAP" layoutX="8.0" layoutY="29.0" size="1.5em" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="12.285715103149414" />
+                                    <Button fx:id="close" mnemonicParsing="false" onAction="#close" prefHeight="28.0" prefWidth="63.0" styleClass="close" stylesheets="@../css/Lecturer.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="CLOSE" size="1.5em" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="minimize" mnemonicParsing="false" onAction="#minimize" prefHeight="28.0" prefWidth="63.0" styleClass="minimize" stylesheets="@../css/Lecturer.css" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="2.0">
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="MINUS" size="1.5em" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="312.0" layoutY="79.0" prefHeight="480.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane fx:id="submissionForm" layoutX="102.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/Lecturer.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="submissionLink" layoutX="160.0" layoutY="414.0" prefWidth="300.0" styleClass="textfield" stylesheets="@../css/Lecturer.css" />
+                                    <Label layoutX="74.0" layoutY="331.0" text="Supervisor :" />
+                                    <TableView fx:id="reportTableView" layoutX="45.0" layoutY="34.0" onMouseClicked="#reportTableViewSelected" prefHeight="300.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                      <columns>
+                                        <TableColumn fx:id="reportId" prefWidth="71.0" text="Report ID" />
+                                        <TableColumn fx:id="reportSupervisor" prefWidth="127.0" text="Supervisor" />
+                                          <TableColumn fx:id="reportAssesmentType" prefWidth="126.0" text="Assesment Type" />
+                                          <TableColumn fx:id="reportSubmissionDate" prefWidth="141.33331298828125" text="Submission Date" />
+                                          <TableColumn fx:id="reportSubmissionLink" prefWidth="490.6666259765625" text="Submission Link" />
+                                          <TableColumn fx:id="reportStatus" prefWidth="101.3333740234375" text="Status" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="40.0" layoutY="371.0" text="Assesment Type :" />
+                                    <Label layoutX="38.0" layoutY="416.0" text="Submission Link :" />
+                                    <ComboBox fx:id="supervisorCombobox" layoutX="160.0" layoutY="328.0" prefWidth="200.0" styleClass="textfield" stylesheets="@../css/Lecturer.css" />
+                                    <ComboBox fx:id="assesmentTypeCombobox" layoutX="161.0" layoutY="369.0" prefWidth="200.0" styleClass="textfield" stylesheets="@../css/Lecturer.css" />
+                                    <Button fx:id="reportSubmitBtn" layoutX="650.0" layoutY="380.0" mnemonicParsing="false" onAction="#submitAssesment" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/Admin.css" text="Submit">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="reportClearBtn" layoutX="740.0" layoutY="380.0" mnemonicParsing="false" onAction="#clearAssesment" prefHeight="30.0" prefWidth="62.0" styleClass="clear-btn" stylesheets="@../css/Admin.css" text="Clear" />
+                                    <Button fx:id="reportDeleteBtn" layoutX="900.0" layoutY="380.0" mnemonicParsing="false" onAction="#removeAssesment" prefHeight="31.0" prefWidth="86.0" styleClass="delete-btn" stylesheets="@../css/Admin.css" text="Remove" />
+                                    <Button fx:id="reportUpdateBtn" layoutX="815.0" layoutY="380.0" mnemonicParsing="false" onAction="#updateAssesment" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/Admin.css" text="Update">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="presentationRequestForm" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/Admin.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/Admin.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <ComboBox fx:id="presentationTimeSlot" layoutX="116.0" layoutY="142.0" prefWidth="160.0" styleClass="textfield" stylesheets="@../css/Admin.css" />
+                                          <DatePicker fx:id="presentationDatePicker" layoutX="118.0" layoutY="92.0" prefWidth="160.0" styleClass="textfield" stylesheets="@../css/Admin.css" />
+                                          <Label layoutX="38.0" layoutY="52.0" text="Lecturer :" />
+                                          <Label layoutX="63.0" layoutY="95.0" text="Date :" />
+                                          <Label layoutX="36.0" layoutY="147.0" text="Time Slot :" />
+                                          <Button fx:id="presentationAddBtn" layoutX="16.0" layoutY="245.0" mnemonicParsing="false" onAction="#addPresentation" prefHeight="35.0" prefWidth="80.0" styleClass="add-btn" stylesheets="@../css/Lecturer.css" text="Add" />
+                                          <Button fx:id="presentationClearBtn" layoutX="108.0" layoutY="245.0" mnemonicParsing="false" onAction="#clearPresentation" prefHeight="35.0" prefWidth="80.0" styleClass="clear-btn" stylesheets="@../css/Lecturer.css" text="Clear" />
+                                          <ComboBox fx:id="presentationLecturerCombobox" layoutX="120.0" layoutY="47.0" prefWidth="160.0" styleClass="textfield" stylesheets="@../css/Admin.css" />
+                                          <Button fx:id="presentationUpdateBtn" layoutX="200.0" layoutY="245.0" mnemonicParsing="false" onAction="#updatePresentation" prefHeight="35.0" prefWidth="80.0" styleClass="update-btn" stylesheets="@../css/Lecturer.css" text="Update" />
+                                          <Button fx:id="presentationRemoveBtn" layoutX="296.0" layoutY="245.0" mnemonicParsing="false" onAction="#removePresentation" prefHeight="35.0" prefWidth="80.0" styleClass="delete-btn" stylesheets="@../css/Lecturer.css" text="Remove" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="viewPresentationForm" prefHeight="200.0" prefWidth="650.0" stylesheets="@../css/Lecturer.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="white-bg" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="viewPresentationTableView" layoutX="-19.0" layoutY="51.0" onMouseClicked="#presentationTableViewSelected" prefHeight="380.0" prefWidth="500.0" stylesheets="@../css/Lecturer.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                            <columns>
+                                              <TableColumn fx:id="presentationLecturer" prefWidth="164.3333740234375" text="Lecturer" />
+                                                <TableColumn fx:id="presentationAssesmentType" prefWidth="116.6666259765625" text="Assesment Type" />
+                                                <TableColumn fx:id="presentationDate" prefWidth="133.0" text="Presentation Date" />
+                                                <TableColumn fx:id="presentationSlot" prefWidth="116.0" text="Time Slot" />
+                                                <TableColumn fx:id="presentationStatus" prefWidth="108.66668701171875" text="Status" />
+                                            </columns>
+                                          </TableView>
+                                          <TextField fx:id="searchBar" layoutX="11.0" layoutY="10.0" onKeyPressed="#presentationSearch" prefHeight="30.0" prefWidth="250.0" styleClass="search" stylesheets="@../css/Lecturer.css" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="27.0" layoutY="30.0" size="1.2em" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

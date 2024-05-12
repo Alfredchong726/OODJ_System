@@ -8,7 +8,6 @@ import com.shared.SharedFunctions;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -16,18 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class LoginController {
-    @FXML
-    private CheckBox Admin;
-
-    @FXML
-    private CheckBox Lecturer;
-
-    @FXML
-    private CheckBox ProjectManager;
-
-    @FXML
-    private CheckBox Student;
-
     @FXML
     private Button close;
 
@@ -46,40 +33,31 @@ public class LoginController {
     private SharedFunctions functions = new SharedFunctions();
     public static String userId;
     public static String userName;
+    public static String imagePath;
 
     public void close() {
         System.exit(0);
     }
 
     public void login() throws IOException {
-        String role = "";
         String name = username.getText();
         String pass = password.getText();
-        if (ProjectManager.isSelected()) {
-            role = "ProjectManager";
-        } else if (Lecturer.isSelected()) {
-            role = "Lecturer";
-        } else if (Student.isSelected()) {
-            role = "Student";
-        } else if (Admin.isSelected()) {
-            role = "Admin";
-        } else {
-            Alert alert = new AlertComponent(AlertType.ERROR, "Error Message", "Please choose what role you want to login").showAlert();
-            alert.showAndWait();
-            return;
-        }
 
-        String userId = functions.validatePassword(role, name, pass);
-        if (userId != null) {
-            Alert alert = new AlertComponent(AlertType.INFORMATION, "Information Message", "Successfully Login").showAlert();
+        String[] userInfo = functions.validatePassword(name, pass);
+        if (userInfo != null) {
+            String path = functions.getProfileImageById(userInfo[0], userInfo[1]);
+            Alert alert = new AlertComponent(AlertType.INFORMATION, "Information Message", 
+                "Successfully Login").showAlert();
             alert.showAndWait();
 
-            setUserId(userId);
+            setUserId(userInfo[1]);
             setUserName(name);
+            setImagePath(path);
             
-            App.setRoot("Lecturer");
+            App.setRoot(userInfo[0]);
         } else {
-            Alert alert = new AlertComponent(AlertType.ERROR, "Error Message", "Please check your username and password").showAlert();
+            Alert alert = new AlertComponent(AlertType.ERROR, "Error Message", 
+                "Please check your username and password").showAlert();
             alert.showAndWait();
         }
     }
@@ -102,11 +80,19 @@ public class LoginController {
         userName = username;
     }
 
+    private void setImagePath(String path) {
+        imagePath = path;
+    }
+
     public static String getUserId() {
         return userId;
     }
 
     public static String getUserName() {
         return userName;
+    }
+
+    public static String getImagePath() {
+        return imagePath;
     }
 }

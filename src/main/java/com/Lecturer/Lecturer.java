@@ -1,9 +1,12 @@
 package com.Lecturer;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.Presentation.Presentation;
 import com.shared.SharedFunctions;
 
 public class Lecturer {
@@ -14,17 +17,21 @@ public class Lecturer {
     public String gender;
     public String phoneNumber;
     public String email;
-    public String role;
+    public LocalDate appliedDate;
     public String presentationRequests;
     public List<String> assignedSupervisee;
     public Map<String, List<String>> availableSlot;
+    public String imagePath;
+    public boolean isProjectManager;
+
+    public Map<String, List<String>> defaultAvailableSlots = new HashMap<>();
 
     public SharedFunctions function = new SharedFunctions();
 
     // Setter
     public Lecturer(String id, String name, String password, String birth, 
-        String gender, String phoneNumber, String email, String role, 
-        List<String> assignedSupervisee, Map<String, List<String>> availableSlot) {
+        String gender, String phoneNumber, String email, LocalDate appliedDate, List<String> assignedSupervisee, 
+        Map<String, List<String>> availableSlot, String imagePath, boolean isProjectManager) {
 
         this.lecturerId = id;
         this.name = name;
@@ -33,9 +40,17 @@ public class Lecturer {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.role = role;
+        this.appliedDate = appliedDate;
         this.assignedSupervisee = assignedSupervisee;
         this.availableSlot = availableSlot;
+        this.imagePath = imagePath;
+        this.isProjectManager = isProjectManager;
+
+        defaultAvailableSlots.put("Monday", new ArrayList<>(Arrays.asList("8am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm")));
+        defaultAvailableSlots.put("Tuesday", new ArrayList<>(Arrays.asList("8am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm")));
+        defaultAvailableSlots.put("Wednesday", new ArrayList<>(Arrays.asList("8am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm")));
+        defaultAvailableSlots.put("Thursday", new ArrayList<>(Arrays.asList("8am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm")));
+        defaultAvailableSlots.put("Friday", new ArrayList<>(Arrays.asList("8am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm")));
     }
 
     // Getter
@@ -63,8 +78,8 @@ public class Lecturer {
         return this.email;
     }
 
-    public String getRole() {
-        return this.role;
+    public LocalDate getAppliedDate() {
+        return this.appliedDate;
     }
 
     public List<String> getAssignedSupervisee() {
@@ -75,35 +90,14 @@ public class Lecturer {
         return this.availableSlot;
     }
 
-    // Functions
-    public List<String> viewAssignedSupervisees() {
-        return this.assignedSupervisee;
+    public String getImagePath() {
+        return this.imagePath;
     }
 
-    public List<Presentation> viewPresentationRequests() {
-        List<Presentation> info = function.getPresentationById("L01", "", "");
-        return info;
+    public boolean getIsProjectManager() {
+        return this.isProjectManager;
     }
 
-    public void viewSecondMarkerAcceptance() {
-
-    }
-
-    public void evaluateReportFeedback() {
-
-    }
-
-    public void viewSuperviseList() {
-
-    }
-
-    public void viewDashboardDetails() {
-
-    }
-
-    public void confirmDatePresentationOrSlot(String presentationId) {
-        function.updatePresentationStatus(presentationId, "apprived", false);
-    }
     @Override
     public String toString() {
         return lecturerId + ";" +
@@ -113,8 +107,10 @@ public class Lecturer {
         gender + ";" +
         phoneNumber + ";" +
         email + ";" +
-        role + ";" +
+        appliedDate + ";" +
         assignedSupervisee + ";" +
-        availableSlot;
+        availableSlot + ";" +
+        imagePath + ";" +
+        isProjectManager + "\n";
     }
 }
