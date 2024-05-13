@@ -49,5 +49,18 @@ git add /paath/to/file1 /path/to/file2
 
 ## Test Case
 ### Admin
+1. Register Student
+2. Register Lecturer
+3. Amend Student Info
+4. Amend Lecturer Info
 ### Lecturer/Project Manager
+1. View student
+2. View presentation Requests
+3. View second marker acceptance
+4. Accept Presentation slot
+5. Evaluate feedback
+6. Dashboard
 ### Strudent
+1. Submit report
+2. Request presentation slot
+3. Check result / status of submission
