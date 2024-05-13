@@ -101,7 +101,9 @@ public class Student {
             email + ";" +
             appliedDate + ";" +
             assesmentType + ";" +
+            supervisorId + ";" +
             supervisor + ";" +
+            secondMarkerId + ";" +
             secondMarker + ";" +
             imagePath + "\n";
     }

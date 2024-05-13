@@ -50,30 +50,35 @@
                                           <String fx:value="logout" />
                                           <String fx:value="shadow" />
                                        </styleClass></Button>
-                                    <Button fx:id="homeBtn" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Home" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                    <Button fx:id="homeBtn" layoutX="31.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Home" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="20.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="HOME" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="presentationBtn" layoutX="92.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Presentation Requests" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="20.0">
+                                    <Button fx:id="presentationBtn" layoutX="111.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Presentation" AnchorPane.leftAnchor="111.0" AnchorPane.topAnchor="20.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="BOOK" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="secondMarkerBtn" layoutX="287.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Second Marker Requests" AnchorPane.leftAnchor="287.0" AnchorPane.topAnchor="20.0">
+                                    <Button fx:id="secondMarkerBtn" layoutX="243.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Second Marker" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="20.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="COMMENT" />
                                        </graphic>
                                     </Button>
                                     <Circle fx:id="imageCircle" fill="DODGERBLUE" layoutX="721.0" layoutY="36.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="5.0" />
-                                    <Button fx:id="studentListBtn" layoutX="494.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Student List" AnchorPane.topAnchor="20.0">
+                                    <Button fx:id="studentListBtn" layoutX="518.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Student List" AnchorPane.topAnchor="20.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="HOTEL" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="reportBtn" layoutX="613.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Reports" AnchorPane.topAnchor="20.0">
+                                    <Button fx:id="reportBtn" layoutX="645.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Reports" AnchorPane.topAnchor="20.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="submissionBtn" layoutX="390.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchScene" styleClass="nav-btn" stylesheets="@../css/Lecturer.css" text="Submission">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="SUBMIT" />
                                        </graphic>
                                     </Button>
                                  </children>
@@ -231,13 +236,13 @@
                                     <FontAwesomeIcon glyphName="SEARCH" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                     <TableView fx:id="presentationTableView" prefHeight="390.0" prefWidth="1080.0" stylesheets="@../css/Lecturer.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
                                       <columns>
-                                        <TableColumn fx:id="presentationStudentId" prefWidth="91.33333587646484" text="Student ID" />
-                                        <TableColumn fx:id="presentationStudentName" prefWidth="373.0" text="Student Name" />
-                                          <TableColumn fx:id="presentationGender" prefWidth="100.0" text="Gender" />
-                                          <TableColumn fx:id="presentationAssesmentType" prefWidth="121.3333740234375" text="Assesment Type" />
-                                          <TableColumn fx:id="presentationDate" prefWidth="162.33331298828125" text="Date" />
-                                          <TableColumn fx:id="presentationSlot" prefWidth="103.0" text="Time Slot" />
-                                          <TableColumn fx:id="presentationStatus" prefWidth="127.33331298828125" text="Status" />
+                                        <TableColumn fx:id="presentationStudentId" prefWidth="82.0" text="Student ID" />
+                                        <TableColumn fx:id="presentationStudentName" prefWidth="377.6666564941406" text="Student Name" />
+                                          <TableColumn fx:id="presentationGender" prefWidth="101.33334350585938" text="Gender" />
+                                          <TableColumn fx:id="presentationAssesmentType" prefWidth="129.33334350585938" text="Assesment Type" />
+                                          <TableColumn fx:id="presentationDate" prefWidth="153.66668701171875" text="Date" />
+                                          <TableColumn fx:id="presentationSlot" minWidth="0.0" prefWidth="118.66668701171875" text="Time Slot" />
+                                          <TableColumn fx:id="presentationStatus" prefWidth="116.0" text="Status" />
                                       </columns>
                                     </TableView>
                                     <Button fx:id="approveBtn" layoutX="850.0" layoutY="12.0" mnemonicParsing="false" onAction="#approvePresentationSlot" styleClass="approve-btn" stylesheets="@../css/Admin.css" text="Approve Slot" />
@@ -333,6 +338,30 @@
                                     <TextField fx:id="reportSearchBar" layoutX="27.0" layoutY="41.0" onKeyPressed="#reportSearch" prefHeight="35.0" prefWidth="259.0" styleClass="search" stylesheets="@../css/Lecturer.css" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                     <FontAwesomeIcon glyphName="SEARCH" layoutX="34.0" layoutY="19.0" size="1.2em" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="20.0" />
                                  </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="submissionForm" prefHeight="480.0" prefWidth="1100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane stylesheets="@../css/Lecturer.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <TableView fx:id="submissionTableView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0">
+                                      <columns>
+                                        <TableColumn fx:id="submissionStudentName" prefWidth="123.0" text="Student Name" />
+                                        <TableColumn fx:id="submissionAssesmentType" prefWidth="111.66667175292969" text="Assesment Type" />
+                                          <TableColumn fx:id="submissionDate" prefWidth="119.33334350585938" text="Submission Date" />
+                                          <TableColumn fx:id="submissionLink" prefWidth="147.66665649414062" text="Submisstion Link" />
+                                          <TableColumn fx:id="submissionFeedback" prefWidth="406.3333435058594" text="Feedback" />
+                                          <TableColumn fx:id="submissionMark" prefWidth="87.0" text="Marks" />
+                                          <TableColumn fx:id="submissionStatus" prefWidth="69.3333740234375" text="Status" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="markBtn" mnemonicParsing="false" onAction="#markBtnClicked" styleClass="approve-btn" stylesheets="@../css/Lecturer.css" text="Mark" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
                               </AnchorPane>
                            </children>
                         </AnchorPane>

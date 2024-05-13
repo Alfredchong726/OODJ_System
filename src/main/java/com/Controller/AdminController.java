@@ -28,6 +28,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -36,6 +37,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -186,13 +189,52 @@ public class AdminController implements Initializable {
     @FXML
     private Label username;
 
+    @FXML
+    private TableView<Student> registerStudentTableView;
+
+    @FXML
+    private TableColumn<Student, String> studentNameColumn;
+
+    @FXML
+    private TableColumn<Student, String> studentDOBColumn;
+
+    @FXML
+    private TableColumn<Student, String> studentGenderColumn;
+
+    @FXML
+    private TableColumn<Student, String> studentEmailColumn;
+
+    @FXML
+    private TableColumn<Student, String> studentPhoneNumberColumn;
+
+    @FXML
+    private TableView<Lecturer> registerLecturerTableView;
+
+    @FXML
+    private TableColumn<Lecturer, String> lecturerNameColumn;
+
+    @FXML
+    private TableColumn<Lecturer, String> lecturerDOBColumn;
+
+    @FXML
+    private TableColumn<Lecturer, String> lecturerGenderColumn;
+
+    @FXML
+    private TableColumn<Lecturer, String> lecturerEmailColumn;
+
+    @FXML
+    private TableColumn<Lecturer, String> lecturerPhoneNumberColumn;
+
     private SharedFunctions functions = new SharedFunctions();
-    private ArrayList<Lecturer> lecturerInfo = functions.getLecturerData();
-    private ArrayList<Lecturer> projectManagerInfo = functions.getProjectManagerData();
     private ArrayList<Lecturer> nonProjectManagerInfo = functions.getNonProjectManagerData();
     private ObservableList<Lecturer> nonProjectManagerList = FXCollections.observableArrayList();
     private ObservableList<Lecturer> projectManagerList = FXCollections.observableArrayList();
+    private ObservableList<Lecturer> lecturerListD = FXCollections.observableArrayList();
+    private ObservableList<Student> studentListD = FXCollections.observableArrayList();
+
     private ArrayList<Student> studentInfo = functions.getStudentData();
+    private ArrayList<Lecturer> lecturerInfo = functions.getLecturerData();
+    private ArrayList<Lecturer> projectManagerInfo = functions.getProjectManagerData();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private Image stuImage;
     private Image lecImage;
@@ -206,6 +248,8 @@ public class AdminController implements Initializable {
         totalAssignedProjectManagerChart();
         totalEnrolledStudentChart();
         showListView();
+        studentInfoShowList();
+        lecturerInfoShowList();
         username.setText(LoginController.getUserName());
 
         homeBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
@@ -241,6 +285,11 @@ public class AdminController implements Initializable {
             homeBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
             registerBtn.setStyle("-fx-background-color: transparent");
             assignRoleBtn.setStyle("-fx-background-color: transparent");
+
+            adminDashboard();
+            totalEnrolledLecturerChart();
+            totalAssignedProjectManagerChart();
+            totalEnrolledStudentChart();
         } else if (event.getSource() == registerBtn) {
             adminForm.setVisible(false);
             registerForm.setVisible(true);
@@ -249,6 +298,9 @@ public class AdminController implements Initializable {
             homeBtn.setStyle("-fx-background-color: transparent");
             registerBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
             assignRoleBtn.setStyle("-fx-background-color: transparent");
+            
+            studentInfoShowList();
+            lecturerInfoShowList();
         } else if (event.getSource() == assignRoleBtn) {
             adminForm.setVisible(false);
             registerForm.setVisible(false);
@@ -257,12 +309,17 @@ public class AdminController implements Initializable {
             homeBtn.setStyle("-fx-background-color: transparent");
             registerBtn.setStyle("-fx-background-color: transparent");
             assignRoleBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
+
+            showListView();
         }
     }
 
     public void showListView() {
         projectManagerListView.getItems().clear();
         lecturerListView.getItems().clear();
+
+        nonProjectManagerInfo = functions.getNonProjectManagerData();
+        projectManagerInfo = functions.getProjectManagerData();
 
         for (Lecturer lecturer: nonProjectManagerInfo) {
             nonProjectManagerList.add(lecturer);
@@ -296,7 +353,7 @@ public class AdminController implements Initializable {
         XYChart.Series<String, Integer> chart = new XYChart.Series<>();
 
         for (Lecturer lecturer: lecturerInfo) {
-            chart.getData().add(new XYChart.Data(lecturer.getAppliedDate().format(formatter), lecturerInfo.size()));
+            chart.getData().add(new XYChart.Data<>(lecturer.getAppliedDate().format(formatter), lecturerInfo.size()));
         }
         totalLecturerCharts.getData().add(chart);
     }
@@ -307,7 +364,7 @@ public class AdminController implements Initializable {
         XYChart.Series<String, Integer> chart = new XYChart.Series<>();
 
         for (Lecturer projectManager: projectManagerInfo) {
-            chart.getData().add(new XYChart.Data(projectManager.getAppliedDate().format(formatter), projectManagerInfo.size()));
+            chart.getData().add(new XYChart.Data<>(projectManager.getAppliedDate().format(formatter), projectManagerInfo.size()));
         }
         totalProjectManagerChart.getData().add(chart);
     }
@@ -318,7 +375,7 @@ public class AdminController implements Initializable {
         XYChart.Series<String, Integer> chart = new XYChart.Series<>();
 
         for (Student student: studentInfo) {
-            chart.getData().add(new XYChart.Data(student.getAppliedDate().format(formatter), studentInfo.size()));
+            chart.getData().add(new XYChart.Data<>(student.getAppliedDate().format(formatter), studentInfo.size()));
         }
         totalStudentChart.getData().add(chart);
     }
@@ -332,6 +389,74 @@ public class AdminController implements Initializable {
         } else if (option.equals("Student")) {
             studentContainer.setVisible(true);
             lecturerContainer.setVisible(false);
+        }
+    }
+
+    public void studentInfoShowList() {
+        studentListD.clear();
+        studentInfo = functions.getStudentData();
+        for (Student student: studentInfo) {
+            studentListD.add(student);
+        }
+
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        studentDOBColumn.setCellValueFactory(new PropertyValueFactory<>("birth"));
+        studentGenderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        studentEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        studentPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        registerStudentTableView.setItems(studentListD);
+    }
+
+    public void lecturerInfoShowList() {
+        lecturerListD.clear();
+        lecturerInfo = functions.getLecturerData();
+        for (Lecturer lecturer: lecturerInfo) {
+            lecturerListD.add(lecturer);
+        }
+
+        lecturerNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        lecturerDOBColumn.setCellValueFactory(new PropertyValueFactory<>("birth"));
+        lecturerGenderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        lecturerEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        lecturerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        registerLecturerTableView.setItems(lecturerListD);
+    }
+
+    public void studentTableViewSelected() {
+        Student selectedStudent = registerStudentTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedStudent!= null) {
+            studentName.setText(selectedStudent.getName());
+            studentEmail.setText(selectedStudent.getEmail());
+            studentPhoneNumber.setText(selectedStudent.getPhoneNumber());
+            studentGender.setValue(selectedStudent.getGender());
+            studentBirth.setValue(LocalDate.parse(selectedStudent.getBirth(), formatter));
+
+            getData.path = selectedStudent.getImagePath();
+
+            String uri = "file:" + System.getProperty("user.dir") + "/" + selectedStudent.getImagePath();
+            Image image = new Image(uri, 160, 180, false, true);
+            studentImage.setImage(image);
+        }
+    }
+
+    public void lecturerTableViewSelected() {
+        Lecturer selectedLecturer = registerLecturerTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedLecturer != null) {
+            lecturerName.setText(selectedLecturer.getName());
+            lecturerEmail.setText(selectedLecturer.getEmail());
+            lecturerPhoneNumber.setText(selectedLecturer.getPhoneNumber());
+            lecturerGender.setValue(selectedLecturer.getGender());
+            lecturerBirth.setValue(LocalDate.parse(selectedLecturer.getBirth(), formatter));
+
+            getData.path = selectedLecturer.getImagePath();
+            
+            String uri = "file:" + System.getProperty("user.dir") + "/" + selectedLecturer.getImagePath();
+            Image image = new Image(uri, 160, 180, false, true);
+            lecturerImage.setImage(image);
         }
     }
 
@@ -391,7 +516,16 @@ public class AdminController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
                 if (option.get().equals(ButtonType.OK)) {
                     functions.appendStudentInfo(studentInfo);
-                } else return;
+
+                    studentName.clear();
+                    studentPassword.clear();
+                    studentConfirmPassword.clear();
+                    studentEmail.clear();
+                    studentPhoneNumber.clear();
+                    studentBirth.setValue(null);
+                    studentGender.setValue(null);
+                    studentImage.setImage(null);
+                }
             }
         } else if (registerOption.getValue().equals("Lecturer")) {
 
@@ -434,11 +568,155 @@ public class AdminController implements Initializable {
                     lecturerPhoneNumber.clear();
                     lecturerBirth.setValue(null);
                     lecturerGender.setValue(null);
-                } else return;
-
-                
+                    lecturerImage.setImage(null);
+                }
             }
         }
+        lecturerInfoShowList();
+        studentInfoShowList();
+    }
+
+    public void clearLecturerOrStudent() {
+        if (registerOption.getValue().equals("Student")) {
+            studentName.clear();
+            studentPassword.clear();
+            studentConfirmPassword.clear();
+            studentEmail.clear();
+            studentPhoneNumber.clear();
+            studentBirth.setValue(null);
+            studentGender.setValue(null);
+            studentImage.setImage(null);
+        } else if (registerOption.getValue().equals("Lecturer")) {
+            lecturerName.clear();;
+            lecturerPassword.clear();
+            lecturerConfirmPassword.clear();
+            lecturerEmail.clear();
+            lecturerPhoneNumber.clear();
+            lecturerBirth.setValue(null);
+            lecturerGender.setValue(null);
+            lecturerImage.setImage(null);
+        }
+    }
+
+    public void updateLecturerOrStudent() {
+        if (registerOption.getValue().equals("Student")) {
+            Student selectedStudent = registerStudentTableView.getSelectionModel().getSelectedItem();
+
+            if (studentName.getText().isEmpty() ||
+                    studentEmail.getText().isEmpty() ||
+                    studentPhoneNumber.getText().isEmpty() ||
+                    studentBirth.getValue() == null ||
+                    studentGender.getValue() == null) {
+
+                Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                    "Please fill all the fields").showAlert();
+                alert.showAndWait();
+            }else {
+                selectedStudent.name = studentName.getText();
+                selectedStudent.email = studentEmail.getText();
+                selectedStudent.phoneNumber = studentPhoneNumber.getText();
+                selectedStudent.birth = studentBirth.getValue().toString();
+                selectedStudent.gender = studentGender.getValue();
+                selectedStudent.imagePath = getData.path;
+
+                Alert alert = new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
+                "Are you sure you want to update " + selectedStudent.name + " info?").showAlert();
+    
+                Optional<ButtonType> option = alert.showAndWait();
+                if (option.get().equals(ButtonType.OK)) {
+                    functions.updateStudent(selectedStudent);
+
+                    studentName.clear();
+                    studentPassword.clear();
+                    studentConfirmPassword.clear();
+                    studentEmail.clear();
+                    studentPhoneNumber.clear();
+                    studentBirth.setValue(null);
+                    studentGender.setValue(null);
+                } else return;
+            }
+        } else if (registerOption.getValue().equals("Lecturer")) {
+            Lecturer selectedLecturer = registerLecturerTableView.getSelectionModel().getSelectedItem();
+
+            if (lecturerName.getText().isEmpty() ||
+                    lecturerEmail.getText().isEmpty() ||
+                    lecturerPhoneNumber.getText().isEmpty() ||
+                    lecturerBirth.getValue() == null ||
+                    lecturerGender.getValue() == null) {
+                Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                    "Please fill all the fields").showAlert();
+                alert.showAndWait();
+            } else {
+                selectedLecturer.name = lecturerName.getText();
+                selectedLecturer.email = lecturerEmail.getText();
+                selectedLecturer.phoneNumber = lecturerPhoneNumber.getText();
+                selectedLecturer.birth = lecturerBirth.getValue().toString();
+                selectedLecturer.gender = lecturerGender.getValue();
+                selectedLecturer.imagePath = getData.path;
+
+                Alert alert = new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
+                    "Are you sure you want to add Lecturer called " + selectedLecturer.name).showAlert();
+
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    functions.updateLecturer(selectedLecturer);
+
+                    lecturerName.clear();;
+                    lecturerPassword.clear();
+                    lecturerConfirmPassword.clear();
+                    lecturerEmail.clear();
+                    lecturerPhoneNumber.clear();
+                    lecturerBirth.setValue(null);
+                    lecturerGender.setValue(null);
+                } else return;
+            }
+        }
+        lecturerInfoShowList();
+        studentInfoShowList();
+    }
+
+    public void removeLecturerOrStudent() {
+        if (registerOption.getValue().equals("Student")) {
+            Student studentInfo = registerStudentTableView.getSelectionModel().getSelectedItem();
+
+            Alert alert = new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
+            "Are you sure you want to delete " + studentInfo.name + " info?").showAlert();
+
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get().equals(ButtonType.OK)) {
+                functions.removeStudent(studentInfo);
+
+                studentName.clear();
+                studentPassword.clear();
+                studentConfirmPassword.clear();
+                studentEmail.clear();
+                studentPhoneNumber.clear();
+                studentBirth.setValue(null);
+                studentGender.setValue(null);
+            }
+        } else if (registerOption.getValue().equals("Lecturer")) {
+            Lecturer lecturerInfo = registerLecturerTableView.getSelectionModel().getSelectedItem();
+
+            Alert alert = new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
+                "Are you sure you want to add Lecturer called " + lecturerInfo.name).showAlert();
+
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+                functions.removeLecturer(lecturerInfo);
+
+                lecturerName.clear();;
+                lecturerPassword.clear();
+                lecturerConfirmPassword.clear();
+                lecturerEmail.clear();
+                lecturerPhoneNumber.clear();
+                lecturerBirth.setValue(null);
+                lecturerGender.setValue(null);
+            }
+        }
+        lecturerInfoShowList();
+        studentInfoShowList();
     }
     // ======================= ASSIGN ROLES FUNCTIONS =========================
     public void assignProjectManager() {

@@ -102,8 +102,9 @@
                                         <TableColumn fx:id="reportSupervisor" prefWidth="127.0" text="Supervisor" />
                                           <TableColumn fx:id="reportAssesmentType" prefWidth="126.0" text="Assesment Type" />
                                           <TableColumn fx:id="reportSubmissionDate" prefWidth="141.33331298828125" text="Submission Date" />
-                                          <TableColumn fx:id="reportSubmissionLink" prefWidth="490.6666259765625" text="Submission Link" />
-                                          <TableColumn fx:id="reportStatus" prefWidth="101.3333740234375" text="Status" />
+                                          <TableColumn fx:id="reportSubmissionLink" prefWidth="417.66668701171875" text="Submission Link" />
+                                          <TableColumn fx:id="reportMark" prefWidth="74.33331298828125" text="Mark" />
+                                          <TableColumn fx:id="reportStatus" prefWidth="97.3333740234375" text="Status" />
                                       </columns>
                                     </TableView>
                                     <Label layoutX="40.0" layoutY="371.0" text="Assesment Type :" />
@@ -137,11 +138,11 @@
                                           <Label layoutX="38.0" layoutY="52.0" text="Lecturer :" />
                                           <Label layoutX="63.0" layoutY="95.0" text="Date :" />
                                           <Label layoutX="36.0" layoutY="147.0" text="Time Slot :" />
-                                          <Button fx:id="presentationAddBtn" layoutX="16.0" layoutY="245.0" mnemonicParsing="false" onAction="#addPresentation" prefHeight="35.0" prefWidth="80.0" styleClass="add-btn" stylesheets="@../css/Lecturer.css" text="Add" />
-                                          <Button fx:id="presentationClearBtn" layoutX="108.0" layoutY="245.0" mnemonicParsing="false" onAction="#clearPresentation" prefHeight="35.0" prefWidth="80.0" styleClass="clear-btn" stylesheets="@../css/Lecturer.css" text="Clear" />
+                                          <Button fx:id="presentationAddBtn" layoutX="10.0" layoutY="245.0" mnemonicParsing="false" onAction="#addPresentation" prefHeight="35.0" prefWidth="80.0" styleClass="add-btn" stylesheets="@../css/Lecturer.css" text="Add" />
+                                          <Button fx:id="presentationClearBtn" layoutX="106.0" layoutY="245.0" mnemonicParsing="false" onAction="#clearPresentation" prefHeight="35.0" prefWidth="80.0" styleClass="clear-btn" stylesheets="@../css/Lecturer.css" text="Clear" />
                                           <ComboBox fx:id="presentationLecturerCombobox" layoutX="120.0" layoutY="47.0" prefWidth="160.0" styleClass="textfield" stylesheets="@../css/Admin.css" />
-                                          <Button fx:id="presentationUpdateBtn" layoutX="200.0" layoutY="245.0" mnemonicParsing="false" onAction="#updatePresentation" prefHeight="35.0" prefWidth="80.0" styleClass="update-btn" stylesheets="@../css/Lecturer.css" text="Update" />
-                                          <Button fx:id="presentationRemoveBtn" layoutX="296.0" layoutY="245.0" mnemonicParsing="false" onAction="#removePresentation" prefHeight="35.0" prefWidth="80.0" styleClass="delete-btn" stylesheets="@../css/Lecturer.css" text="Remove" />
+                                          <Button fx:id="presentationUpdateBtn" layoutX="208.0" layoutY="245.0" mnemonicParsing="false" onAction="#updatePresentation" prefHeight="35.0" prefWidth="80.0" styleClass="update-btn" stylesheets="@../css/Lecturer.css" text="Update" />
+                                          <Button fx:id="presentationRemoveBtn" layoutX="306.0" layoutY="245.0" mnemonicParsing="false" onAction="#removePresentation" prefHeight="35.0" prefWidth="80.0" styleClass="delete-btn" stylesheets="@../css/Lecturer.css" text="Remove" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane fx:id="viewPresentationForm" prefHeight="200.0" prefWidth="650.0" stylesheets="@../css/Lecturer.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">

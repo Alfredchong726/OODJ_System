@@ -44,8 +44,8 @@ public class Presentation {
             secondMarkerAceeptance + ';' +
             studentId + ';' +
             studentName + ';' +
-            assesmentType + ';' +
             gender + ';' +
+            assesmentType + ';' +
             slot + ';' +
             status + "\n";
     }

@@ -121,6 +121,9 @@ public class StudentController implements Initializable {
     private TableColumn<Report, String>reportId;
 
     @FXML
+    private TableColumn<Report, String> reportMark;
+
+    @FXML
     private TableColumn<Report, String> reportStatus;
 
     @FXML
@@ -442,6 +445,7 @@ public class StudentController implements Initializable {
 
     // ====================== REPORT SUBMISSION ================================
     public void reportShowListData() {
+        reportListD.clear();
         reportList = functions.getReportById("", userId);
         for (Report report: reportList) {
             reportListD.add(report);
@@ -452,6 +456,7 @@ public class StudentController implements Initializable {
         reportAssesmentType.setCellValueFactory(new PropertyValueFactory<>("assesmentType"));
         reportSubmissionDate.setCellValueFactory(new PropertyValueFactory<>("submissionDate"));
         reportSubmissionLink.setCellValueFactory(new PropertyValueFactory<>("submissionLink"));
+        reportMark.setCellValueFactory(new PropertyValueFactory<>("marks"));
         reportStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         reportTableView.setItems(reportListD);
@@ -489,23 +494,29 @@ public class StudentController implements Initializable {
             if (option.get().equals(ButtonType.OK)) {
                 functions.addReport(new Report("", userId, userName, reportLecturerId, 
                     reportLecturerName, assesmentTypeCombobox.getSelectionModel().getSelectedItem(),
-                    LocalDate.now(), submissionLink.getText(), "pending"));
+                    LocalDate.now(), submissionLink.getText(), "", "", "pending"));
             } else return;
         }
+        reportShowListData();
     }
 
     public void updateAssesment() {
+        Report selectedReport = reportTableView.getSelectionModel().getSelectedItem();
         if (supervisorCombobox.getSelectionModel().getSelectedItem() == null || 
             assesmentTypeCombobox.getSelectionModel().getSelectedItem() == null || 
                 submissionLink.getText() == null) {
-            Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", "Please make sure all the fields are filled").showAlert();
+            Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                "Please make sure all the fields are filled").showAlert();
+            alert.showAndWait();
+        } else if (selectedReport.status.equals("approved")) {
+            Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                "This report already marked by supervisor, thus you are not allow to modify anymore.").showAlert();
             alert.showAndWait();
         } else {
             Alert alert = new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
                 "Are you sure you want to update this submission?").showAlert();
             Optional<ButtonType> option = alert.showAndWait();
 
-            Report selectedReport = reportTableView.getSelectionModel().getSelectedItem();
             selectedReport.lecturerId = supervisorCombobox.getSelectionModel().getSelectedItem().getLecturerId();
             selectedReport.lecturerName = supervisorCombobox.getSelectionModel().getSelectedItem().getName();
             selectedReport.assesmentType = assesmentTypeCombobox.getSelectionModel().getSelectedItem();
@@ -515,18 +526,25 @@ public class StudentController implements Initializable {
                 functions.updateReport(selectedReport);
             } else return;
         }
+        reportShowListData();
     }
 
     public void removeAssesment() {
-        Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
-            "Are you sure you want to remove this submission?").showAlert();
-        Optional<ButtonType> option = alert.showAndWait();
-
         Report selectedReport = reportTableView.getSelectionModel().getSelectedItem();
+        if (selectedReport.status.equals("approved")) {
+            Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                "This report already marked by supervisor, thus you are not allow to modify anymore.").showAlert();
+            alert.showAndWait();
+        } else {
+            Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                "Are you sure you want to remove this submission?").showAlert();
+            Optional<ButtonType> option = alert.showAndWait();
 
-        if (option.get().equals(ButtonType.OK)) {
-            functions.removeReport(selectedReport);
-        } else return;
+            if (option.get().equals(ButtonType.OK)) {
+                functions.removeReport(selectedReport);
+            } else return;
+        }
+        
     }
 
     public void clearAssesment() {

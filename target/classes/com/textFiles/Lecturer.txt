@@ -3,3 +3,4 @@ L02;Olivia;olivia123;1999-01-01;Female;0101234567;olivia@mail.com;2024-03-23;Cho
 L03;Peter;peter123;1999-01-01;Male;0101234567;peter@mail.com;2024-04-21;Chong,Chan;Monday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Thursday;src/main/resources/com/img/3.png;false
 L04;Amy;amy123;1999-01-01;Female;0101234567;amy@mail.com;2024-07-22;Chong,Chan;Monday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Thursday;src/main/resources/com/img/4.png;true
 L05;Micheal;micheal123;1999-01-01;Female;0101234567;micheal@mail.com;2024-09-26;Chong,Chan;Monday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Thursday;src/main/resources/com/img/5.png;false
+L6;test;test;2001-05-23;Male;test;test;2024-05-13;null;Monday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Thursday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Friday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Wednesday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm,Tuesday-8am,10am,11am,12pm,1pm,2pm,3pm,4pm,5pm;src/main/resources/com/img/3.png;false

@@ -9,13 +9,13 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.AlertComponent.AlertComponent;
-import com.Presentation.Presentation;
-import com.Student.Student;
 import com.Lecturer.Lecturer;
+import com.Presentation.Presentation;
 import com.Report.Report;
+import com.Student.Student;
 import com.example.App;
-import com.shared.SharedFunctions;
 import com.shared.LecturerStringConverter;
+import com.shared.SharedFunctions;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +23,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
@@ -67,6 +68,12 @@ public class LecturerController implements Initializable {
 
     @FXML
     private AnchorPane reportForm;
+
+    @FXML
+    private AnchorPane submissionForm;
+
+    @FXML
+    private Button submissionBtn;
 
     @FXML
     private Button logout;
@@ -246,6 +253,30 @@ public class LecturerController implements Initializable {
     private TableColumn<Student, String> secondMarkerColumn;
 
     @FXML
+    private TableView<Report> submissionTableView;
+
+    @FXML
+    private TableColumn<Report, String> submissionStudentName;
+
+    @FXML
+    private TableColumn<Report, String> submissionAssesmentType;
+
+    @FXML
+    private TableColumn<Report, LocalDate> submissionDate;
+
+    @FXML
+    private TableColumn<Report, String> submissionLink;
+
+    @FXML
+    private TableColumn<Report, String> submissionFeedback;
+
+    @FXML
+    private TableColumn<Report, String> submissionMark;
+
+    @FXML
+    private TableColumn<Report, String> submissionStatus;
+
+    @FXML
     private Label username;
 
     @FXML
@@ -302,6 +333,7 @@ public class LecturerController implements Initializable {
         lecturerCharts();
         studentShowListData();
         reportShowListData();
+        submissionListShow();
 
         homeBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
         presentationBtn.setStyle("-fx-background-color: transparent");
@@ -336,27 +368,32 @@ public class LecturerController implements Initializable {
             homeForm.setVisible(true);
             presentationForm.setVisible(false);
             secondMarkerForm.setVisible(false);
+            submissionForm.setVisible(false);
             studentListForm.setVisible(false);
             reportForm.setVisible(false);
 
             homeBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
             presentationBtn.setStyle("-fx-background-color: transparent");
             secondMarkerBtn.setStyle("-fx-background-color: transparent");
+            submissionBtn.setStyle("-fx-background-color: transparent");
             studentListBtn.setStyle("-fx-background-color: transparent");
             reportBtn.setStyle("-fx-background-color: transparent");
 
             lecturerDashboard();
             lecturerCharts();
+            lecturerShowListData();
         } else if (event.getSource() == presentationBtn) {
             homeForm.setVisible(false);
             presentationForm.setVisible(true);
             secondMarkerForm.setVisible(false);
+            submissionForm.setVisible(false);
             studentListForm.setVisible(false);
             reportForm.setVisible(false);
 
             homeBtn.setStyle("-fx-background-color: transparent");
             presentationBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
             secondMarkerBtn.setStyle("-fx-background-color: transparent");
+            submissionBtn.setStyle("-fx-background-color: transparent");
             studentListBtn.setStyle("-fx-background-color: transparent");
             reportBtn.setStyle("-fx-background-color: transparent");
 
@@ -365,26 +402,46 @@ public class LecturerController implements Initializable {
             homeForm.setVisible(false);
             presentationForm.setVisible(false);
             secondMarkerForm.setVisible(true);
+            submissionForm.setVisible(false);
             studentListForm.setVisible(false);
             reportForm.setVisible(false);
 
             homeBtn.setStyle("-fx-background-color: transparent");
             presentationBtn.setStyle("-fx-background-color: transparent");
             secondMarkerBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
+            submissionBtn.setStyle("-fx-background-color: transparent");
             studentListBtn.setStyle("-fx-background-color: transparent");
             reportBtn.setStyle("-fx-background-color: transparent");
             
             secondMarkerShowList();
+        } else if (event.getSource() == submissionBtn) {
+            homeForm.setVisible(false);
+            presentationForm.setVisible(false);
+            secondMarkerForm.setVisible(false);
+            submissionForm.setVisible(true);
+            studentListForm.setVisible(false);
+            reportForm.setVisible(false);
+
+            homeBtn.setStyle("-fx-background-color: transparent");
+            presentationBtn.setStyle("-fx-background-color: transparent");
+            secondMarkerBtn.setStyle("-fx-background-color: transparent");
+            submissionBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
+            studentListBtn.setStyle("-fx-background-color: transparent");
+            reportBtn.setStyle("-fx-background-color: transparent");
+
+            submissionListShow();
         } else if (event.getSource() == studentListBtn) {
             homeForm.setVisible(false);
             presentationForm.setVisible(false);
             secondMarkerForm.setVisible(false);
+            submissionForm.setVisible(false);
             studentListForm.setVisible(true);
             reportForm.setVisible(false);
 
             homeBtn.setStyle("-fx-background-color: transparent");
             presentationBtn.setStyle("-fx-background-color: transparent");
             secondMarkerBtn.setStyle("-fx-background-color: transparent");
+            submissionBtn.setStyle("-fx-background-color: transparent");
             studentListBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
             reportBtn.setStyle("-fx-background-color: transparent");
 
@@ -393,14 +450,18 @@ public class LecturerController implements Initializable {
             homeForm.setVisible(false);
             presentationForm.setVisible(false);
             secondMarkerForm.setVisible(false);
+            submissionForm.setVisible(false);
             studentListForm.setVisible(false);
             reportForm.setVisible(true);
 
             homeBtn.setStyle("-fx-background-color: transparent");
             presentationBtn.setStyle("-fx-background-color: transparent");
             secondMarkerBtn.setStyle("-fx-background-color: transparent");
+            submissionBtn.setStyle("-fx-background-color: transparent");
             studentListBtn.setStyle("-fx-background-color: transparent");
             reportBtn.setStyle("-fx-background-color: linear-gradient(to bottom right, #1bb0dd, #12d6de)");
+
+            reportShowListData();
         }
     }
 
@@ -508,7 +569,7 @@ public class LecturerController implements Initializable {
     public void approvePresentationSlot() {
         Presentation selectedPresentation = presentationTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedPresentation.status == "rejected") {
+        if (selectedPresentation.status.equals("rejected")) {
             AlertComponent alert = new AlertComponent(AlertType.ERROR, "Error Message", 
                 "This presentation slot already rejected, need to wait student to request again");
             alert.showAlert();
@@ -518,23 +579,27 @@ public class LecturerController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get().equals(ButtonType.OK)) {
             functions.updatePresentationStatus(selectedPresentation.presentationId, "approved", false);
-        } else return;
+        }
+        lecturerShowListData();
     }
 
     public void rejectPresentationSlot() {
         Presentation selectedPresentation = presentationTableView.getSelectionModel().getSelectedItem();
-
-        if (selectedPresentation.status == "approved") {
-            AlertComponent alert = new AlertComponent(AlertType.ERROR, "Error Message", 
-                "This presentation slot already approved, cannot change the status anymore");
-            alert.showAlert();
+        System.out.println(selectedPresentation.status);
+        System.out.println(selectedPresentation.status.equals("approved"));
+        if (selectedPresentation.status.equals("approved")) {
+            Alert alert = new AlertComponent(AlertType.ERROR, "Error Message", 
+                "This presentation slot already approved, cannot change the status anymore").showAlert();
+            alert.showAndWait();
+            return;
         } 
         Alert alert =  new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
             "Are you sure you want to reject this presentation slot ?").showAlert();
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get().equals(ButtonType.OK)) {
             functions.updatePresentationStatus(selectedPresentation.presentationId, "rejected", false);
-        } else return;
+        }
+        lecturerShowListData();
     }
 
     public void presentationSearch() {
@@ -572,7 +637,7 @@ public class LecturerController implements Initializable {
         presentationTableView.setItems(sortList);
     }
 
-    // ======================= Second Marker =======================
+    // ======================= SECOND MARKER =======================
     public void secondMarkerShowList() {
         userId = LoginController.getUserId();
         presentationList = functions.getPresentationById("", userId, "");
@@ -635,7 +700,8 @@ public class LecturerController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get().equals(ButtonType.OK)) {
             functions.updatePresentationStatus(selectedPresentation.presentationId, "approved", true);
-        } else return;
+        }
+        secondMarkerShowList();
     }
 
     public void rejectPresentationSlotAsSecondMarker() {
@@ -651,7 +717,8 @@ public class LecturerController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get().equals(ButtonType.OK)) {
             functions.updatePresentationStatus(selectedPresentation.presentationId, "rejected", false);
-        } else return;
+        }
+        secondMarkerShowList();
     }
 
     public void presentationSearchAsSecondMarker() {
@@ -687,6 +754,38 @@ public class LecturerController implements Initializable {
         SortedList<Presentation> sortList = new SortedList<>(filter);
         sortList.comparatorProperty().bind(secondMarkerTableView.comparatorProperty());
         secondMarkerTableView.setItems(sortList);
+    }
+
+    // ===================== SUBMISSION FUNCTIONS =================
+    public void submissionListShow() {
+        submissionStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        submissionAssesmentType.setCellValueFactory(new PropertyValueFactory<>("assesmentType"));
+        submissionDate.setCellValueFactory(new PropertyValueFactory<>("submissionDate"));
+        submissionLink.setCellValueFactory(new PropertyValueFactory<>("submissionLink"));
+        submissionFeedback.setCellValueFactory(new PropertyValueFactory<>("feedback"));
+        submissionMark.setCellValueFactory(new PropertyValueFactory<>("marks"));
+        submissionStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        submissionTableView.setItems(reportListD);
+    }
+
+    public void markBtnClicked() throws IOException {
+        Report selectedReport = submissionTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedReport == null) {
+            Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
+                "Please make sure to select any row from the table then only click on the mark button").showAlert();
+            alert.showAndWait();
+            return;
+        } else if (selectedReport.status.equals("approved")) {
+            Alert alert = new AlertComponent(AlertType.ERROR, "Error Message", 
+                "This report already approved, cannot mark this anymore").showAlert();
+            alert.showAndWait();
+            return;
+        } else {
+            DialogBoxController dialogController = new DialogBoxController();
+            dialogController.showDialogBox(selectedReport);
+        }
     }
 
     // ===================== STUDENT LIST FUNCTIONS =================
@@ -735,7 +834,9 @@ public class LecturerController implements Initializable {
     }
 
     public void saveChanges() {
-        if (assesmentTypeCombobox.getValue() == null || supervisorCombobox.getValue() == null || secondMarkerCombobox.getValue() == null) {
+        if (assesmentTypeCombobox.getValue() == null ||
+            supervisorCombobox.getValue() == null ||
+                secondMarkerCombobox.getValue() == null) {
             Alert alert = new AlertComponent(AlertType.WARNING, "Warning Message", 
                 "Please make sure all fields are filled").showAlert();
             alert.showAndWait();
@@ -754,6 +855,7 @@ public class LecturerController implements Initializable {
                 functions.updateStudent(selectedStudent);
             }
         }
+        studentShowListData();
     }
 
     // ===================== VIEW REPORT FUNCTIONS =================

@@ -15,4 +15,5 @@ module com.example {
 
     opens com.Report to javafx.base;
     opens com.Student to javafx.base;
+    opens com.Lecturer to javafx.base;
 }

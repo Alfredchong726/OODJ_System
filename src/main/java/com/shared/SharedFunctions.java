@@ -259,7 +259,7 @@ public class SharedFunctions {
         Student lastStudentData = studentData.get(studentData.size() - 1);
         int newStudentId = Integer.parseInt(lastStudentData.getStudentId().substring(1)) + 1;
         String newStudentIdString = "S" + newStudentId;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(presentationFile, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(studentFile, true))) {
             student.studentId = newStudentIdString;
             writer.write(student.toString());
         } catch (Exception e) {
@@ -331,6 +331,24 @@ public class SharedFunctions {
         }
     }
 
+    public void updateLecturer(Lecturer LecturerData) {
+        ArrayList<Lecturer> lecturerData = new ArrayList<Lecturer>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(lecturerFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Lecturer lecturer = parseLecturer(line);
+                if (lecturer.lecturerId.equals(LecturerData.lecturerId)) {
+                    lecturerData.add(LecturerData);
+                } else {
+                    lecturerData.add(lecturer);
+                }
+            }
+            writeLecturerData(lecturerData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updatePresentation(Presentation PresentationData) {
         ArrayList<Presentation> presentationData = new ArrayList<Presentation>();
         try (BufferedReader reader = new BufferedReader(new FileReader(presentationFile))) {
@@ -349,6 +367,38 @@ public class SharedFunctions {
         }
     }
 
+    public void removeStudent(Student StudentData) {
+        ArrayList<Student> studentData = new ArrayList<Student>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(studentFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Student student = parseStudent(line);
+                if (!student.studentId.equals(StudentData.studentId)) {
+                    studentData.add(student);
+                }
+            }
+            writeStudentData(studentData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeLecturer(Lecturer LecturerData) {
+        ArrayList<Lecturer> lecturerData = new ArrayList<Lecturer>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(lecturerFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Lecturer lecturer = parseLecturer(line);
+                if (!lecturer.lecturerId.equals(LecturerData.lecturerId)) {
+                    lecturerData.add(lecturer);
+                }
+            }
+            writeLecturerData(lecturerData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void removeReport(Report ReportData) {
         ArrayList<Report> reportData = new ArrayList<Report>();
         try (BufferedReader reader = new BufferedReader(new FileReader(reportFile))) {
@@ -356,7 +406,7 @@ public class SharedFunctions {
             while ((line = reader.readLine()) != null) {
                 Report report = parseReport(line, "all", "all");
                 if (!report.reportId.equals(ReportData.reportId)) {
-                    reportData.add(ReportData);
+                    reportData.add(report);
                 }
             }
             writeReportData(reportData);
@@ -372,7 +422,7 @@ public class SharedFunctions {
             while ((line = reader.readLine()) != null) {
                 Presentation presentation = parsePresentation(line, "all", "all", "all");
                 if (!presentation.presentationId.equals(PresentationData.presentationId)) {
-                    presentationData.add(PresentationData);
+                    presentationData.add(presentation);
                 }
             }
         } catch (IOException e) {
@@ -453,7 +503,7 @@ public class SharedFunctions {
     }
 
     public void updatePresentationStatus(String presentationId, String status, boolean isSecondMarker) {
-        ArrayList<Presentation> PresentationData = new ArrayList<Presentation>();
+        ArrayList<Presentation> presentationData = new ArrayList<Presentation>();
         try (BufferedReader reader = new BufferedReader(new FileReader(presentationFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -463,9 +513,9 @@ public class SharedFunctions {
                 } else if (presentation.presentationId.equals(presentationId) && !isSecondMarker) {
                     presentation.status = status;
                 }
-                PresentationData.add(presentation);
+                presentationData.add(presentation);
             }
-            writePresentationData(PresentationData);
+            writePresentationData(presentationData);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -533,17 +583,19 @@ public class SharedFunctions {
         String assesmentType = fields[5];
         LocalDate submissionDate = LocalDate.parse(fields[6]);
         String submissionLink = fields[7];
-        String status = fields[8];
+        String feedback = fields[8];
+        String marks = fields[9];
+        String status = fields[10];
 
         if (LecturerId != null && LecturerId.equals(fields[2])) {
             return new Report(reportId, studentId, studentName, lecturerId, lecturerName, 
-                assesmentType, submissionDate, submissionLink, status);
+                assesmentType, submissionDate, submissionLink, feedback, marks, status);
         } else if (StudentId != null && StudentId.equals(fields[1])) {
             return new Report(reportId, studentId, studentName, lecturerId, lecturerName, 
-                assesmentType, submissionDate, submissionLink, status);
+                assesmentType, submissionDate, submissionLink, feedback, marks, status);
         } else if (LecturerId.equals("all") && StudentId.equals("all")) {
             return new Report(reportId, studentId, studentName, lecturerId, lecturerName, 
-                assesmentType, submissionDate, submissionLink, status);
+                assesmentType, submissionDate, submissionLink, feedback, marks, status);
         }
         return null;
     }

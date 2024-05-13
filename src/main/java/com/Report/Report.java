@@ -11,11 +11,13 @@ public class Report {
     public String assesmentType;
     public LocalDate submissionDate;
     public String submissionLink;
+    public String feedback;
+    public String marks;
     public String status;
 
     public Report (String reportId, String studentId, String studentName, String lecturerId, 
         String lecturerName, String assesmentType, LocalDate submissionDate, String submissionLink, 
-            String status) {
+            String feedback, String marks, String status) {
         this.reportId = reportId;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -24,6 +26,8 @@ public class Report {
         this.assesmentType = assesmentType;
         this.submissionDate = submissionDate;
         this.submissionLink = submissionLink;
+        this.feedback = feedback;
+        this.marks = marks;
         this.status = status;
     }
 
@@ -60,6 +64,14 @@ public class Report {
         return this.submissionLink;
     }
 
+    public String getFeedback() {
+        return this.feedback;
+    }
+
+    public String getMarks() {
+        return this.marks;
+    }
+
     public String getStatus() {
         return this.status;
     }
@@ -74,6 +86,8 @@ public class Report {
             assesmentType + ";" +
             submissionDate + ";" +
             submissionLink + ";" +
+            feedback + ";" +
+            marks + ";" +
             status + "\n";
     }
 }
