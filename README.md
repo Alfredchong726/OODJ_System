@@ -49,21 +49,21 @@ git add /paath/to/file1 /path/to/file2
 
 ## Test Case
 ### Admin
-- [ ]Register Student
-- [ ]Register Lecturer
-- [ ]Amend Student Info
-- [ ]Amend Lecturer Info
+- [ ] Register Student
+- [ ] Register Lecturer
+- [ ] Amend Student Info
+- [ ] Amend Lecturer Info
 ### Lecturer/Project Manager
-- [ ]View student
-- [ ]View presentation Requests
-- [ ]View second marker acceptance
-- [ ]Accept Presentation slot
-- [ ]Evaluate feedback
-- [ ]Dashboard
-- [ ]Allot assesment type to student
-- [ ]Assign supervisor and second marker to student
-- [ ]View status of report
+- [ ] View student
+- [ ] View presentation Requests
+- [ ] View second marker acceptance
+- [ ] Accept Presentation slot
+- [ ] Evaluate feedback
+- [ ] Dashboard
+- [ ] Allot assesment type to student
+- [ ] Assign supervisor and second marker to student
+- [ ] View status of report
 ### Strudent
-- [ ]Submit report
-- [ ]Request presentation slot
-- [ ]Check result / status of submission
+- [ ] Submit report
+- [ ] Request presentation slot
+- [ ] Check result / status of submission
