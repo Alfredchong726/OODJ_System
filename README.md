@@ -53,8 +53,8 @@ git add /paath/to/file1 /path/to/file2
 - [X] Register Lecturer
 - [X] Amend Student Info
 - [X] Amend Lecturer Info
-- [ ] Assign Lecturer to Project Manager
-- [ ] Unassign Project Manager to Lecturer
+- [X] Assign Lecturer to Project Manager
+- [X] Unassign Project Manager to Lecturer
 ### Lecturer/Project Manager
 - [ ] View student
 - [ ] View presentation Requests
