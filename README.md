@@ -60,6 +60,9 @@ git add /paath/to/file1 /path/to/file2
 4. Accept Presentation slot
 5. Evaluate feedback
 6. Dashboard
+7. Allot assesment type to student
+8. Assign supervisor and second marker to student
+9. View status of report
 ### Strudent
 1. Submit report
 2. Request presentation slot
