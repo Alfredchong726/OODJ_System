@@ -1,10 +1,10 @@
 ## Missing functionality
 
 ### Admin
-Amend student/lecturer info
+- [X] Amend student/lecturer info
 
 ### Lecturer
-Evaluate report with feedback
+- [ ] Evaluate report with feedback
 
 ### Student
-View result of submission
+- [ ]View result of submission
