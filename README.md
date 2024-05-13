@@ -49,21 +49,21 @@ git add /paath/to/file1 /path/to/file2
 
 ## Test Case
 ### Admin
-1. Register Student
-2. Register Lecturer
-3. Amend Student Info
-4. Amend Lecturer Info
+- [ ]1. Register Student
+- [ ]2. Register Lecturer
+- [ ]3. Amend Student Info
+- [ ]4. Amend Lecturer Info
 ### Lecturer/Project Manager
-1. View student
-2. View presentation Requests
-3. View second marker acceptance
-4. Accept Presentation slot
-5. Evaluate feedback
-6. Dashboard
-7. Allot assesment type to student
-8. Assign supervisor and second marker to student
-9. View status of report
+- [ ]1. View student
+- [ ]2. View presentation Requests
+- [ ]3. View second marker acceptance
+- [ ]4. Accept Presentation slot
+- [ ]5. Evaluate feedback
+- [ ]6. Dashboard
+- [ ]7. Allot assesment type to student
+- [ ]8. Assign supervisor and second marker to student
+- [ ]9. View status of report
 ### Strudent
-1. Submit report
-2. Request presentation slot
-3. Check result / status of submission
+- [ ]1. Submit report
+- [ ]2. Request presentation slot
+- [ ]3. Check result / status of submission
