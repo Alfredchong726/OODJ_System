@@ -4,7 +4,7 @@
 - [X] Amend student/lecturer info
 
 ### Lecturer
-- [ ] Evaluate report with feedback
+- [X] Evaluate report with feedback
 
 ### Student
-- [ ]View result of submission
+- [ ] View result of submission
