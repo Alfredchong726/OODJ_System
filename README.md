@@ -49,12 +49,10 @@ git add /paath/to/file1 /path/to/file2
 
 ## Test Case
 ### Admin
-- [ ] Register Student
+- [X] Register Student
 - [X] Register Lecturer
-  - [ ] After creating user, the photo will remain
-  - [ ] After clicked on table view, photo won't change
-- [ ] Amend Student Info
-- [ ] Amend Lecturer Info
+- [X] Amend Student Info
+- [X] Amend Lecturer Info
 ### Lecturer/Project Manager
 - [ ] View student
 - [ ] View presentation Requests
