@@ -66,6 +66,6 @@ git add /paath/to/file1 /path/to/file2
 - [x] Assign supervisor and second marker to student
 - [x] View status of report
 ### Strudent
-- [ ] Submit report
+- [x] Submit report
 - [ ] Request presentation slot
-- [ ] Check result / status of submission
+- [x] Check result / status of submission
