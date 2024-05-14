@@ -60,7 +60,7 @@ git add /paath/to/file1 /path/to/file2
 - [x] View presentation Requests
 - [x] View second marker acceptance
 - [x] Accept Presentation slot
-- [ ] Evaluate feedback
+- [x] Evaluate feedback
 - [x] Dashboard
 - [x] Allot assesment type to student
 - [x] Assign supervisor and second marker to student
