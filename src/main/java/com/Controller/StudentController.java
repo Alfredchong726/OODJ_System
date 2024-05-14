@@ -304,6 +304,7 @@ public class StudentController implements Initializable {
 
     // ====================== PRESENTATION REQUESTS ================================
     public void presentationShowListData() {
+        presentationListD.clear();
         presentationList = functions.getPresentationById("", "", userId);
         for (Presentation presentation: presentationList) {
             presentationListD.add(presentation);
@@ -352,10 +353,14 @@ public class StudentController implements Initializable {
                     Student studentInfo = functions.getStudentDataById(userId);
                     functions.addPresentation(new Presentation("", 
                         presentationDatePicker.getValue().format(formatter), presentationLecturerId,  presentationLecturerName, 
-                            "", "", "", userId, userName, studentInfo.getAssesmentType(), 
-                                studentInfo.getGender(), presentationTimeSlot.getValue(), "pending"), userId);
-                } else return;
+                            studentInfo.secondMarkerId, studentInfo.secondMarker, "pending", userId, userName, 
+                                studentInfo.getAssesmentType(), studentInfo.getGender(), presentationTimeSlot.getValue(), "pending"), userId);
+                }
             }
+        presentationLecturerCombobox.setValue(null);
+        presentationDatePicker.setValue(null);
+        presentationTimeSlot.setValue(null);
+        presentationShowListData();
     }
 
     public void clearPresentation() {
@@ -393,6 +398,7 @@ public class StudentController implements Initializable {
                 functions.updatePresentation(selectedPresentation);
             } else return;
         }
+        presentationShowListData();
     }
 
     public void removePresentation() {
@@ -410,6 +416,7 @@ public class StudentController implements Initializable {
                 functions.removePresentation(selectedPresentation);
             }
         }
+        presentationShowListData();
     }
 
     public void presentationSearch() {

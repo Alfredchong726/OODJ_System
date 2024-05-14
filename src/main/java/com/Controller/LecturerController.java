@@ -25,6 +25,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
@@ -45,6 +47,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LecturerController implements Initializable {
@@ -293,11 +296,13 @@ public class LecturerController implements Initializable {
     private ObservableList<Lecturer> lecturerListD = FXCollections.observableArrayList();
     private ObservableList<Student> studentListD = FXCollections.observableArrayList();
     private ObservableList<Report> reportListD = FXCollections.observableArrayList();
+    private ObservableList<Report> reportLecturerListD = FXCollections.observableArrayList();
     private SharedFunctions functions = new SharedFunctions();
     private ArrayList<Presentation> presentationList;
     private ArrayList<Lecturer> lecturerList;
     private ArrayList<Student> studentList;
     private ArrayList<Report> reportList;
+    private ArrayList<Report> reportLecturerList;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private String userId;
 
@@ -758,6 +763,14 @@ public class LecturerController implements Initializable {
 
     // ===================== SUBMISSION FUNCTIONS =================
     public void submissionListShow() {
+        reportLecturerListD.clear();
+
+        reportLecturerList = functions.getReportById(userId, "");
+
+        for (Report report : reportLecturerList) {
+            reportLecturerListD.add(report);
+        }
+
         submissionStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         submissionAssesmentType.setCellValueFactory(new PropertyValueFactory<>("assesmentType"));
         submissionDate.setCellValueFactory(new PropertyValueFactory<>("submissionDate"));
@@ -766,7 +779,7 @@ public class LecturerController implements Initializable {
         submissionMark.setCellValueFactory(new PropertyValueFactory<>("marks"));
         submissionStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        submissionTableView.setItems(reportListD);
+        submissionTableView.setItems(reportLecturerListD);
     }
 
     public void markBtnClicked() throws IOException {
@@ -783,8 +796,26 @@ public class LecturerController implements Initializable {
             alert.showAndWait();
             return;
         } else {
-            DialogBoxController dialogController = new DialogBoxController();
-            dialogController.showDialogBox(selectedReport);
+            showDialogBox(selectedReport);
+        }
+    }
+
+    private void showDialogBox(Report report) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/DialogBox.fxml"));
+            Parent root = loader.load();
+
+            DialogBoxController dialogController = loader.getController();
+            dialogController.setReport(report);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dialog Box");
+            stage.setOnHidden(event -> submissionListShow());
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -903,5 +934,8 @@ public class LecturerController implements Initializable {
                 }
             });
         });
+        SortedList<Report> sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(reportTableView.comparatorProperty());
+        reportTableView.setItems(sortList);
     }
 }

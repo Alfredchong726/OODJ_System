@@ -1,22 +1,25 @@
 package com.Controller;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
+import com.AlertComponent.AlertComponent;
 import com.Report.Report;
 import com.shared.SharedFunctions;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class DialogBoxController {
+public class DialogBoxController implements Initializable {
      @FXML
     private AnchorPane adminForm;
 
@@ -48,10 +51,15 @@ public class DialogBoxController {
     private TextField submissionLink;
 
     private SharedFunctions functions = new SharedFunctions();
-    private Report reportData;
+    private String reportId;
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+    }
 
     public void close() {
-        System.exit(0);
+        Stage stage = (Stage) close.getScene().getWindow();
+        stage.close();
     }
 
     public void minimize() {
@@ -59,29 +67,25 @@ public class DialogBoxController {
         stage.setIconified(true);
     }
 
-    public void showDialogBox(Report report) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/DialogBox.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Dialog Box");
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
-            Scene scene = new Scene(root);
-            dialogStage.setScene(scene);
-            dialogStage.show();
-
-            studentName.setText(report.getStudentName());
-            assesmentTypeBtn.setText(report.getAssesmentType());
-            submissionLink.setText(report.getSubmissionLink());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setReport(Report report) {
+        reportId = report.reportId;
+        studentName.setText(report.studentName);
+        assesmentTypeBtn.setText(report.assesmentType);
+        submissionLink.setText(report.submissionLink);
     }
 
     public void okBtnClicked() {
-        reportData.feedback = feedback.getText();
-        reportData.marks = marks.getText();
+        Alert alert = new AlertComponent(AlertType.CONFIRMATION, "Confirmation Message", 
+            "Are you sure you want to set student " + studentName.getText() + "'s feedback and marks to :" + "\n" +
+            "Feedback :" + feedback.getText() + "\n" + "Marks :" + marks.getText()).showAlert();
 
-        functions.updateReport(reportData);
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get().equals(ButtonType.OK)) {
+            functions.addFeedbackNMarkForReport(reportId, feedback.getText(), marks.getText());
+            close();
+        }
+
+        
     }
 }

@@ -313,6 +313,25 @@ public class SharedFunctions {
         }
     }
 
+    public void addFeedbackNMarkForReport(String reportId, String feedback, String marks) {
+        ArrayList<Report> reportData = new ArrayList<Report>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Report report = parseReport(line, "all", "all");
+                if (report.reportId.equals(reportId)) {
+                    report.feedback = feedback;
+                    report.marks = marks;
+                    report.status = "approved";
+                }
+                reportData.add(report);
+            }
+            writeReportData(reportData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateStudent(Student StudentData) {
         ArrayList<Student> studentData = new ArrayList<Student>();
         try (BufferedReader reader = new BufferedReader(new FileReader(studentFile))) {
@@ -587,7 +606,7 @@ public class SharedFunctions {
         String marks = fields[9];
         String status = fields[10];
 
-        if (LecturerId != null && LecturerId.equals(fields[2])) {
+        if (LecturerId != null && LecturerId.equals(fields[3])) {
             return new Report(reportId, studentId, studentName, lecturerId, lecturerName, 
                 assesmentType, submissionDate, submissionLink, feedback, marks, status);
         } else if (StudentId != null && StudentId.equals(fields[1])) {

@@ -1,4 +1,4 @@
-P01;2024-06-03;L01;Alfred;L05;Micheal;pending;S01;Albert;Male;assesmentType2;10am;pending
+P01;2024-06-03;L01;Alfred;L05;Micheal;pending;S01;Albert;Male;assesmentType2;10am;approved
 P02;2024-06-03;L03;Peter;L02;Olivia;pending;S01;Albert;Male;assesmentType2;10am;pending
 P03;2024-06-03;L01;Alfred;L04;Amy;approved;S05;Katherine;Female;assesmentType5;2pm;approved
 P04;2024-06-03;L05;Micheal;L02;Olivia;approved;S04;Marry;Female;assesmentType4;4pm;pending

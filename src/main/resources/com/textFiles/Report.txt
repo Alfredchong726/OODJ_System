@@ -1,7 +1,7 @@
 R01;S02;Dream;L03;Peter;CP1;2024-05-08;http://www.testing.moddle.link/test;;;pending
 R02;S05;Katherine;L02;Olivia;CP2;2024-05-08;http://www.testing.moddle.link/test;;;approved
 R03;S01;Albert;L04;Amy;RMCP;2024-05-08;http://www.testing.moddle.link/test;;;pending
-R04;S01;Albert;L01;Alfred;CP1;2024-05-08;http://www.testing.moddle.link/test;;;pending
+R04;S01;Albert;L01;Alfred;CP1;2024-05-08;http://www.testing.moddle.link/test;test;90;approved
 R05;S03;Samanda;L05;Micheal;FYP;2024-05-08;http://www.testing.moddle.link/test;;;pending
 R06;S02;Dream;L03;Peter;CP1;2024-05-08;http://www.testing.moddle.link/test;;;approved
 R07;S05;Katherine;L02;Olivia;CP2;2024-05-08;http://www.testing.moddle.link/test;;;pending
@@ -17,4 +17,4 @@ R16;S02;Dream;L03;Peter;CP1;2024-05-08;http://www.testing.moddle.link/test;;;app
 R17;S05;Katherine;L02;Olivia;CP2;2024-05-08;http://www.testing.moddle.link/test;;;pending
 R18;S01;Albert;L04;Amy;RMCP;2024-05-08;http://www.testing.moddle.link/test;;;pending
 R19;S01;Albert;L01;Alfred;CP1;2024-05-08;http://www.testing.moddle.link/test12;;;pending
-R10;S03;Katherine;L05;Micheal;FYP;2024-05-08;http://www.testing.moddle.link/test;;;approved
+R20;S03;Katherine;L05;Micheal;FYP;2024-05-08;http://www.testing.moddle.link/test;;;approved
