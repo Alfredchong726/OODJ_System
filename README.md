@@ -67,5 +67,5 @@ git add /paath/to/file1 /path/to/file2
 - [x] View status of report
 ### Strudent
 - [x] Submit report
-- [ ] Request presentation slot
+- [x] Request presentation slot
 - [x] Check result / status of submission
