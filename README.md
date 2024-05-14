@@ -62,9 +62,9 @@ git add /paath/to/file1 /path/to/file2
 - [x] Accept Presentation slot
 - [ ] Evaluate feedback
 - [x] Dashboard
-- [ ] Allot assesment type to student
-- [ ] Assign supervisor and second marker to student
-- [ ] View status of report
+- [x] Allot assesment type to student
+- [x] Assign supervisor and second marker to student
+- [x] View status of report
 ### Strudent
 - [ ] Submit report
 - [ ] Request presentation slot
