@@ -56,16 +56,16 @@ git add /paath/to/file1 /path/to/file2
 - [X] Assign Lecturer to Project Manager
 - [X] Unassign Project Manager to Lecturer
 ### Lecturer/Project Manager
-- [ ] View student
-- [ ] View presentation Requests
-- [ ] View second marker acceptance
-- [ ] Accept Presentation slot
-- [ ] Evaluate feedback
-- [ ] Dashboard
-- [ ] Allot assesment type to student
-- [ ] Assign supervisor and second marker to student
-- [ ] View status of report
+- [x] View student
+- [x] View presentation Requests
+- [x] View second marker acceptance
+- [x] Accept Presentation slot
+- [x] Evaluate feedback
+- [x] Dashboard
+- [x] Allot assesment type to student
+- [x] Assign supervisor and second marker to student
+- [x] View status of report
 ### Strudent
-- [ ] Submit report
-- [ ] Request presentation slot
-- [ ] Check result / status of submission
+- [x] Submit report
+- [x] Request presentation slot
+- [x] Check result / status of submission
