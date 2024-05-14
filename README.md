@@ -56,12 +56,12 @@ git add /paath/to/file1 /path/to/file2
 - [X] Assign Lecturer to Project Manager
 - [X] Unassign Project Manager to Lecturer
 ### Lecturer/Project Manager
-- [ ] View student
-- [ ] View presentation Requests
-- [ ] View second marker acceptance
-- [ ] Accept Presentation slot
+- [x] View student
+- [x] View presentation Requests
+- [x] View second marker acceptance
+- [x] Accept Presentation slot
 - [ ] Evaluate feedback
-- [ ] Dashboard
+- [x] Dashboard
 - [ ] Allot assesment type to student
 - [ ] Assign supervisor and second marker to student
 - [ ] View status of report
