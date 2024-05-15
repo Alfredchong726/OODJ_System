@@ -6,7 +6,7 @@ R05;S03;Samanda;L05;Micheal;FYP;2024-05-08;http://www.testing.moddle.link/test;;
 R06;S02;Dream;L03;Peter;CP1;2024-05-08;http://www.testing.moddle.link/test;;;approved
 R07;S05;Katherine;L02;Olivia;CP2;2024-05-08;http://www.testing.moddle.link/test;;;pending
 R08;S01;Albert;L04;Amy;RMCP;2024-05-08;http://www.testing.moddle.link/test;;;pending
-R09;S01;Albert;L01;Alfred;CP1;2024-05-08;http://www.testing.moddle.link/test;;;pending
+R09;S01;Albert;L01;Alfred;CP1;2024-05-08;http://www.testing.moddle.link/test;assignment like a rubbish;10;approved
 R10;S03;Samanda;L05;Micheal;FYP;2024-05-08;http://www.testing.moddle.link/test;;;pending
 R11;S02;Dream;L03;Peter;CP1;2024-05-08;http://www.testing.moddle.link/test;;;approved
 R12;S05;Katherine;L02;Olivia;CP2;2024-05-08;http://www.testing.moddle.link/test;;;pending

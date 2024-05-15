@@ -318,9 +318,6 @@ public class AdminController implements Initializable {
         projectManagerListView.getItems().clear();
         lecturerListView.getItems().clear();
 
-        nonProjectManagerInfo = functions.getNonProjectManagerData();
-        projectManagerInfo = functions.getProjectManagerData();
-
         for (Lecturer lecturer: nonProjectManagerInfo) {
             nonProjectManagerList.add(lecturer);
         }
@@ -723,7 +720,9 @@ public class AdminController implements Initializable {
         Lecturer selectedLecturer = lecturerListView.getSelectionModel().getSelectedItem();
         nonProjectManagerInfo.remove(selectedLecturer);
         projectManagerInfo.add(selectedLecturer);
-
+        System.out.println(selectedLecturer);
+        System.out.println(nonProjectManagerInfo);
+        System.out.println(projectManagerInfo);
         showListView();
     }
 
