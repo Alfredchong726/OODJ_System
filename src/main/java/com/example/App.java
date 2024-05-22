@@ -16,7 +16,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Login"));
 
-        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(true);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
